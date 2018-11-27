@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery.cycle2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    div#footer {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    nav {
+        background-color: #ffffff;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+    div#top ul {
+        border: none;
+    }
+    div#top ul li a {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                              supported by Chrome and Opera */
+        font-size: 160%;
+        transition: background-color 0.3s, border-radius 0.3s, font-weight 0.3s;
+        color: #000000;
+    }
+    div#top ul li a.selected {
+        font-weight: bolder;
+        color: #000000;
+    }
+    div#top ul li a:hover {
+        background-color: #d3d3d3;
+        border-radius: 10px;
+        font-weight: bolder;
+        color: #000000;
+        transition: background-color 0.3s, border-radius 0.3s, font-weight 0.3s;
+    }
+    img#logo {
+        margin-top: 50px;
+    }
+    div.thumbnail {
+        border: none;
+        padding: 0;
+        margin-bottom: 25px;
+    }
+    div.thumbnail img {
+        border-radius: 10px;
+    }
+    #products {
+        margin-top: 45px;
+    }
+    div.modal-content {
+        border-radius: 0;
+        border: none;
+        padding: 0;
+    }
+    div.modal-header {
+        border: none;
+        background-color: #f0ad4e;
+    }
+    h4.modal-title {
+        font-weight: bold;
+    }
+    div.modal-body {
+        border: none;
+    }
+    div.innertable {
+        padding: 15px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    table thead {
+        font-weight: bolder;
+        font-size: 160%;
+        letter-spacing: .02em;
+        border: none;
+    }
+    table tfoot {
+        font-weight: bolder;
+        font-size: 140%;
+        letter-spacing: .02em;
+    }
+    table tbody {
+        font-size: 140%;
+        font-weight: normal;
+    }
+    tr td {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        border-top: 1px solid #d3d3d3;
+    }
+    tr th {
+        padding-bottom: 3px;
+    }
+    .description {
+        margin-top: 10px;
+        font-size: 140%;
+        padding-left: 0;
+    }
+    .price {
+        margin-top: 10px;
+        font-size: 160%;
+        font-weight: bolder;
+        padding-left: 0;
+    }
+    .modal-dialog {
+        margin-top: 50px;
+    }
+    #carttab:hover {
+        cursor: pointer;
+    }
+</style>
+
+<body style="padding-top: 0;">
+
+    <div id="top" class="container" style="margin-top: 0;padding-top: 0;">
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <ul class="nav nav-justified" style="margin-top: 0;padding-top: 0;">
+                    <li role="presentation"><a class="selected" href="index.html">Home</a></li>
+                    <li role="presentation"><a id="carttab" data-toggle="modal" data-target="#cart">Cart</a></li>
+                    <!--Commented out, may be developed in the future-->
+                    <!--<li role="presentation"><a href="login.html">Login</a></li>-->
+                    <!--<li role="presentation"><a href="Feedback.html">Feedback</a></li>-->
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row cycle-slideshow" data-cycle-fx=flipHorz data-cycle-timeout=2700 data-cycle-pause-on-hover="true">
+            <img id="logo" class="col-xs-12 col-md-12" src="img/logo.jpg" alt="">
+            <!--<img id="logo" class="col-xs-12 col-md-12" src="img/bestservice.jpg" alt="">-->
+            <img id="logo" class="col-xs-12 col-md-12" src="img/freeshipping.jpg" alt="">
+        </div>
+
+        <!-- Product image area-->
+        <div id="products" class="row">
+
+            <div class="col-sm-12 col-md-12" style="margin-bottom: 15px;">
+                <h1><span class="label label-success">Menu</span></h1>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="img/hamburger.jpg" alt="">
+                    <div>
+                        <h3 style="text-align:center; margin-bottom: 15px; margin-top: 15px;">Hamburger</h3>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#burger"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="img/fries.jpg" alt="">
+                    <div>
+                        <h3 style="text-align:center; margin-bottom: 15px; margin-top: 15px;">Fries</h3>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#fries"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="img/wings.jpg" alt="">
+                    <div>
+                        <h3 style="text-align:center; margin-bottom: 15px; margin-top: 15px;">Wings</h3>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#wings"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="img/cookie.jpg" alt="">
+                    <div>
+                        <h3 style="text-align:center; margin-bottom: 15px; margin-top: 15px;">Cookie</h3>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cookie"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="img/salads.jpg" alt="">
+                    <div>
+                        <h3 style="text-align:center; margin-bottom: 15px; margin-top: 15px;">Salads</h3>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#salads"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="img/juice.jpg" alt="">
+                    <div>
+                        <h3 style="text-align:center; margin-bottom: 15px; margin-top: 15px;">Orange Juice</h3>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#juice"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hamburger Modals -->
+    <div class="modal fade" id="burger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Hamburger</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row innertable">
+                        <table class="col-sm-12 col-md-12 col-lg-12 col-xm-12">
+                            <thead><tr><th>Ingredient</th><th>Content</th></tr></thead>
+                            <tbody>
+                                <tr><td>Beef</td><td>100g</td></tr>
+                                <tr><td>Vegetables</td><td>20g</td></tr>
+                                <tr><td>Sauce</td><td>5g</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="description">
+                        Hamburger made from whole beef, lettice, and tomato sauce on all wheat bread.
+                    </div>
+                    <div class="price">
+                        $6.00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fries Modals -->
+    <div class="modal fade" id="fries" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row innertable">
+                        <table class="col-sm-12 col-md-12 col-lg-12 col-xm-12">
+                            <thead><tr><th>Ingredient</th><th>Content</th></tr></thead>
+                            <tbody>
+                                <tr><td>Potato</td><td>100g</td></tr>
+                                <tr><td>Salt</td><td>5g</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="description">
+                        French fries, served hot and crispy.
+                    </div>
+                    <div class="price">
+                        $3.00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wings Modals -->
+    <div class="modal fade" id="wings" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row innertable">
+                        <table class="col-sm-12 col-md-12 col-lg-12 col-xm-12">
+                            <thead><tr><th>Ingredient</th><th>Content</th></tr></thead>
+                            <tbody>
+                                <tr><td>Chicken Wings</td><td>100g</td></tr>
+                                <tr><td>Special sauce</td><td>10g</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="description">
+                        Fried wings with our secret hot sauce.
+                    </div>
+                    <div class="price">
+                        $6.00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Modals -->
+    <div class="modal fade" id="cookie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row innertable">
+                        <table class="col-sm-12 col-md-12 col-lg-12 col-xm-12">
+                            <thead><tr><th>Ingredient</th><th>Content</th></tr></thead>
+                            <tbody>
+                                <tr><td>Butter</td><td>75g</td></tr>
+                                <tr><td>Sugar</td><td>30g</td></tr>
+                                <tr><td>Nut</td><td>15g</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="description">
+                        Baked cookie with nuts including almond and peanut.
+                    </div>
+                    <div class="price">
+                        $6.00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Salads Modals -->
+    <div class="modal fade" id="salads" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row innertable">
+                        <table class="col-sm-12 col-md-12 col-lg-12 col-xm-12">
+                            <thead><tr><th>Ingredient</th><th>Content</th></tr></thead>
+                            <tbody>
+                                <tr><td>Vegetables</td><td>150g</td></tr>
+                                <tr><td>Boiled chicken breast</td><td>60g</td></tr>
+                                <tr><td>Feta cheese</td><td>20g</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="description">
+                        Salad made with lettice, spinach, chicken breast, small tomatoes, and feta cheese.
+                    </div>
+                    <div class="price">
+                        $6.00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Juice Modals -->
+    <div class="modal fade" id="juice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row innertable">
+                        <table class="col-sm-12 col-md-12 col-lg-12 col-xm-12">
+                            <thead><tr><th>Ingredient</th><th>Content</th></tr></thead>
+                            <tbody>
+                                <tr><td>Orange juice</td><td>150ml</td></tr>
+                                <tr><td>Sugar</td><td>5g</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="description">
+                        Juice made from fresh oranges.
+                    </div>
+                    <div class="price">
+                        $3.00
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modals -->
+    <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#5cb85c;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row innertable">
+                        <table class="col-sm-12 col-md-12 col-lg-12 col-xm-12">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Amount</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Hamburger</td>
+                                    <td>1</td>
+                                    <td>$6</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;">Total before Tax</td>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;">$6</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;">Estimated Tax</td>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;">$0.6</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;">Total</td>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;">$6.6</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <div>
+                        <a href="payment.html" class="btn btn-success btn-lg" style="margin-top: 10px; width: 49%;">Make order</a>
+                        <a href="index.html" class="btn btn-danger btn-lg" style="margin-top: 10px; width: 49%;">Clear my cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
