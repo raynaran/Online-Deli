@@ -47,9 +47,19 @@
                 }
             }
             cartS+='</tbody>';
-            document.getElementById("cartTable").innerHTML=cartS;
+            cartP+='$'+befTax.toString()+'</td> </tr>';
+            cartP+='<tr> <td style="border: none;">Estimated Tax</td> <td style="border: none;"></td> <td style="border: none;">'+'$'+tax.toString()+'</td> </tr>';
+            cartP+='<tr> <td style="border: none;">Total</td> <td style="border: none;"></td> <td style="border: none;">'+'$'+total.toString()+'</td> </tr>';
+            document.getElementById("cartTable").innerHTML=cartS+cartP;
+            cartS = '<table class="col-sm-12 col-md-12 col-lg-12 col-xm-12">\
+                    <thead>\
+                    <tr>\
+                    <th>Item</th>\
+                    <th>Amount</th>\
+                    <th>Price</th>\
+                    </tr> </thead> <tbody>';
+            cartP = "<tfoot> <tr> <td style=\"border: none;\"></td> <td style=\"border: none;\"></td> <td style=\"border: none;\"></td> </tr> <tr> <td style=\"border: none;\">Total before Tax</td> <td style=\"border: none;\"></td> <td style=\"border: none;\">";
 
-            //document.write("<p>aaaaaaaaaaaaaaaaaaaaaaaaa</p>");
         }
 
 </script>
