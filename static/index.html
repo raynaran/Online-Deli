@@ -15,39 +15,41 @@
         var food = ['Hamburger', 'Fries', 'Wings', 'Cookie', 'Salads', 'Orange Juice'];
         var price = [6, 3, 6, 6, 6, 3];
         var cartA = [0, 0, 0, 0, 0, 0];
-        var cartS = "<table class=\"col-sm-12 col-md-12 col-lg-12 col-xm-12\">\n<thead>\n<tr>\n<th>Item</th>\n<th>Amount</th>\n<th>Price</th>\n</tr>\n</thead>\n<tbody>\n<tr>"
+        var cartS = "<table class=\"col-sm-12 col-md-12 col-lg-12 col-xm-12\"> <thead> <tr> <th>Item</th> <th>Amount</th> <th>Price</th> </tr> </thead> <tbody> "
+        var cartP = "<tfoot> <tr> <td style=\"border: none;\"></td> <td style=\"border: none;\"></td> <td style=\"border: none;\"></td> </tr> <tr> <td style=\"border: none;\">Total before Tax</td> <td style=\"border: none;\"></td> <td style=\"border: none;\">";
 
         function addFood(a) {
-            cartF.push(food[a]);
             cartA[a] = cartA[a] + 1;
-            cartP.push(price[a]);
         }
 
         function showCart() {
             var total = 0;
             var tax = 0.0;
             var befTax = 0;
+            //cartA[0] = 1;
             for (var i = 0; i < 6; i++) {
                 if (cartA[i] > 0) {
-                    cartS.concat("<td>");
-                    cartS.concat(food[i]);
-                    cartS.concat("</td> <td>");
-                    cartS.concat(cartA[i].toString());
-                    cartS.concat("</td> <td>$");
-                    cartS.concat(price[i].toString());
-                    cartS.concat("</td>");
-                    befTax = befTax + price[i];
-                    tax = tax + price[i] * 0.06;
+                    cartS = cartS + "<tr> <td>";
+                    cartS = cartS + food[i];
+                    cartS = cartS + "</td> <td>";
+                    cartS = cartS + cartA[i].toString();
+                    cartS = cartS + "</td> <td>$";
+                    cartS = cartS + price[i].toString();
+                    cartS = cartS + "</td> </tr>";
+                    befTax = befTax + price[i] * cartA[i];
+                    tax = tax + price[i] * 0.06 * cartA[i];
                     total = befTax + tax;
                 }
             }
-            cartS.concat("</tr > </tbody > <tfoot> <tr> <td style=\"border: none;\"></td> <td style=\"border: none; \"></td> <td style=\"border: none; \"> </td> </tr> <tr> <td style=\"border: none; \">Total before Tax</td> <td style=\"border: none; \"> </td> <td style=\"border: none;\">$");
-            cartS.concat(befTax.toString());
-            cartS.concat("</td> </tr> <tr> <td style=\"border: none;\">Estimated Tax</td> <td style=\"border: none; \"></td> <td style=\"border: none; \">$");
-            cartS.concat(tax.toString());
-            cartS.concat("</td > </tr > <tr> <td style=\"border: none;\">Total</td> <td style=\"border: none; \"></td> <td style=\"border: none;\">$");
-            cartS.concat(total.toString());
-            cartS.concat("</td> </tr> </tfoot> </table >");
+            cartS = cartS + "</tbody>";
+            cartP = cartP + "$" + befTax.toString();
+            cartP = cartP + "</td> </tr> <tr> <td style=\"border: none;\">Estimated Tax</td> <td style=\"border: none;\"></td> <td style=\"border: none;\">";
+            cartP = cartP + "$" + tax.toString();
+            cartP = cartP + "</td > </tr > <tr> <td style=\"border: none;\">Total</td> <td style=\"border: none;\"></td> <td style=\"border: none;\">";
+            cartP = cartP + "$" + total.toString();
+            cartP = cartP + "</td> </tr> </tfoot> </table >";
+            //document.write(cartS);
+            //document.write(cartP);
         }
 
     </script>
@@ -64,103 +66,125 @@
         padding-bottom: 0px;
         margin-bottom: 0px;
     }
+
     div#top ul {
         border: none;
     }
-    div#top ul li a {
-        -webkit-touch-callout: none; /* iOS Safari */
-        -webkit-user-select: none; /* Safari */
-        -khtml-user-select: none; /* Konqueror HTML */
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-        user-select: none; /* Non-prefixed version, currently
+
+        div#top ul li a {
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
                               supported by Chrome and Opera */
-        font-size: 160%;
-        transition: background-color 0.3s, border-radius 0.3s, font-weight 0.3s;
-        color: #000000;
-    }
-    div#top ul li a.selected {
-        font-weight: bolder;
-        color: #000000;
-    }
-    div#top ul li a:hover {
-        background-color: #d3d3d3;
-        border-radius: 10px;
-        font-weight: bolder;
-        color: #000000;
-        transition: background-color 0.3s, border-radius 0.3s, font-weight 0.3s;
-    }
+            font-size: 160%;
+            transition: background-color 0.3s, border-radius 0.3s, font-weight 0.3s;
+            color: #000000;
+        }
+
+            div#top ul li a.selected {
+                font-weight: bolder;
+                color: #000000;
+            }
+
+            div#top ul li a:hover {
+                background-color: #d3d3d3;
+                border-radius: 10px;
+                font-weight: bolder;
+                color: #000000;
+                transition: background-color 0.3s, border-radius 0.3s, font-weight 0.3s;
+            }
+
     img#logo {
         margin-top: 50px;
     }
+
     div.thumbnail {
         border: none;
         padding: 0;
         margin-bottom: 25px;
     }
-    div.thumbnail img {
-        border-radius: 10px;
-    }
+
+        div.thumbnail img {
+            border-radius: 10px;
+        }
+
     #products {
         margin-top: 45px;
     }
+
     div.modal-content {
         border-radius: 0;
         border: none;
         padding: 0;
     }
+
     div.modal-header {
         border: none;
         background-color: #f0ad4e;
     }
+
     h4.modal-title {
         font-weight: bold;
     }
+
     div.modal-body {
         border: none;
     }
+
     div.innertable {
         padding: 15px;
         padding-top: 0;
         padding-bottom: 0;
     }
+
     table thead {
         font-weight: bolder;
         font-size: 160%;
         letter-spacing: .02em;
         border: none;
     }
+
     table tfoot {
         font-weight: bolder;
         font-size: 140%;
         letter-spacing: .02em;
     }
+
     table tbody {
         font-size: 140%;
         font-weight: normal;
     }
+
     tr td {
         padding-top: 3px;
         padding-bottom: 3px;
         border-top: 1px solid #d3d3d3;
     }
+
     tr th {
         padding-bottom: 3px;
     }
+
     .description {
         margin-top: 10px;
         font-size: 140%;
         padding-left: 0;
     }
+
     .price {
         margin-top: 10px;
         font-size: 160%;
         font-weight: bolder;
         padding-left: 0;
     }
+
     .modal-dialog {
         margin-top: 50px;
     }
+
     #carttab:hover {
         cursor: pointer;
     }
@@ -173,7 +197,7 @@
             <div class="container">
                 <ul class="nav nav-justified" style="margin-top: 0;padding-top: 0;">
                     <li role="presentation"><a class="selected" href="index.html">Home</a></li>
-                    <li role="presentation"><a id="carttab" data-toggle="modal" data-target="#cart">Cart</a></li>
+                    <li role="presentation"><a id="carttab" data-toggle="modal" data-target="#cart" onclick="showCart()">Cart</a></li>
                     <!--Commented out, may be developed in the future-->
                     <!--<li role="presentation"><a href="login.html">Login</a></li>-->
                     <!--<li role="presentation"><a href="Feedback.html">Feedback</a></li>-->
@@ -204,7 +228,7 @@
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#burger"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                                <button type="button" class="btn btn-success" onclick="addFood('0')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
                             </div>
                         </div>
                     </div>
@@ -221,7 +245,7 @@
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#fries"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                                <button type="button" class="btn btn-success" onclick="addFood('1')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
                             </div>
                         </div>
                     </div>
@@ -238,7 +262,7 @@
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#wings"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                                <button type="button" class="btn btn-success" onclick="addFood('2')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
                             </div>
                         </div>
                     </div>
@@ -255,7 +279,7 @@
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#cookie"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                                <button type="button" class="btn btn-success" onclick="addFood('3')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
                             </div>
                         </div>
                     </div>
@@ -272,7 +296,7 @@
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#salads"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                                <button type="button" class="btn btn-success" onclick="addFood('4')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
                             </div>
                         </div>
                     </div>
@@ -289,7 +313,7 @@
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#juice"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Info</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+                                <button type="button" class="btn btn-success" onclick="addFood('5')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
                             </div>
                         </div>
                     </div>
@@ -486,8 +510,9 @@
                 <div class="modal-body">
                     <div class="row innertable">
                         <script>
-                            showCart();
+                            //showCart();
                             document.write(cartS);
+                            document.write(cartP);
                         </script>
                     </div>
 
@@ -502,3 +527,4 @@
 
 </body>
 </html>
+
