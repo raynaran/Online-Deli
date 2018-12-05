@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Payment</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<style>
+	div#footer{
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	nav{
+		background-color: #ffffff;
+		padding-bottom: 0px;
+		margin-bottom: 0px;
+	}
+	div#top ul li a{
+		font-size: 160%;
+		transition: background-color 0.3s, border-radius 0.3s, font-weight 0.3s;
+		color: #000000;
+	}
+	div#top ul li a.selected{
+		font-weight: bolder;
+		color: #000000;
+	}
+	div#top ul li a:hover{
+		background-color: #d3d3d3;
+		border-radius: 10px;
+		font-weight: bolder;
+		color: #000000;
+		transition: background-color 0.3s, border-radius 0.3s, font-weight 0.3s;
+	}
+	img#logo{
+		margin-top: 50px;
+	}
+	.table-responsive{
+		border: none;
+		background-image: url(img/papertexture.jpg);
+		margin-top: 20px;
+		margin-bottom: 10px;
+	}
+	table thead{
+		font-weight: bolder;
+		font-size: 160%;
+		letter-spacing: .02em;
+		border: none;
+	}
+	table tfoot{
+		font-weight: bolder;
+		font-size: 140%;
+		letter-spacing: .02em;
+	}
+	table tbody{
+		font-size: 140%;
+		font-weight: normal;
+	}
+	div#buttons div a{
+		height: 55px;
+		padding: 13px;
+		text-decoration: none;
+		font-size: 150%;
+	}
+
+	#payment{
+		cursor: pointer;
+	}
+
+
+</style>
+
+<body style="padding-top: 0;">
+	
+    <div id="top" class="container" style="margin-top: 0;padding-top: 0;">
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <ul class="nav nav-justified" style="margin-top: 0;padding-top: 0;">
+                    <li role="presentation"><a href="index.html">Home</a></li>
+                    <li role="presentation"><a id="payment" class="selected">Payment</a></li>
+                    <li role="presentation"><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row">
+            <img id="logo" class="col-xs-12 col-md-12" src="img/freeshipping.jpg" alt="">
+        </div>
+
+        <!-- Priduct Image area-->
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Amount</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hamburger</td>
+                        <td>1</td>
+                        <td>$6</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td style="border: none;"></td>
+                        <td style="border: none;"></td>
+                        <td style="border: none;"></td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;">Total before Tax</td>
+                        <td style="border: none;"></td>
+                        <td style="border: none;">$6</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;">Estimated Tax</td>
+                        <td style="border: none;"></td>
+                        <td style="border: none;">$0.6</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;">Total</td>
+                        <td style="border: none;"></td>
+                        <td style="border: none;">$6.6</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="row" id="buttons">
+            <div class="col-md-6 col-sm-6 col-xs-12 btn ">
+                <a href="success.html" class="btn-warning btn-lg btn-block">Pay After Delivered</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
