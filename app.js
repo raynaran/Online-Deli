@@ -1,24 +1,29 @@
-var http = require('http');
-var fs = require('fs');
-var url = require('url');
-var port = process.env.PORT || 9119;
+var cluster = require('cluster');
 
-http.createServer(function (req, res) {
-    console.log(req.url);
-    var doc = url.parse(req.url, true);
-    var filename = "." + doc.pathname;
+if (cluster.isMaster) {
+    var cpuCount = require('os').cpus().length;
 
-    fs.readFile(filename, function (err, data) {
-        if (err) {
-            res.writeHead(404, {'Content-Type': 'text/plain'});
-            res.end("404 Not Found");
-            return;
-        }
+    for (var i = 0; i < cpuCount; i += 1) {
+        cluster.fork();
+    }
 
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.write(data);
-        res.end();
+    cluster.on('exit', function (worker) {
+        console.log('Worker ' + worker.id + ' died :(');
+        cluster.fork();
     });
-}).listen(port, function () {
-    console.log('Server running at  http://localhost:' + port + '/index.html');
-});
+} else {
+    //var AWS = require('aws-sdk');
+    var express = require('express'),
+        app = express(),
+        port = process.env.PORT || 3000;
+
+    app.use(express.static('static'));
+
+    app.get('/', function (req, res) {
+        res.sendFile(__dirname + '/static/index.html');
+    });
+
+    app.listen(port, function () {
+        console.log('Server running at http://127.0.0.1:' + port + '/');
+    });
+}

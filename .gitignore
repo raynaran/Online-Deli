@@ -1,3 +1,7 @@
 .idea/
 .DS_Store
 desktop.ini
+node_modules/
+.gitignore
+.elasticbeanstalk/
+package-lock.json
