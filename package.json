@@ -3,6 +3,7 @@
   "version": "0.2.3.3",
   "dependencies": {
     "aws-sdk": "latest",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4"
   },
   "scripts": {
