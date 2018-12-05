@@ -9,6 +9,48 @@
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/jquery.cycle2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    <script>
+
+        var food = ['Hamburger', 'Fries', 'Wings', 'Cookie', 'Salads', 'Orange Juice'];
+        var price = [6, 3, 6, 6, 6, 3];
+        var cartA = [0, 0, 0, 0, 0, 0];
+        var cartS = "<table class=\"col-sm-12 col-md-12 col-lg-12 col-xm-12\">\n<thead>\n<tr>\n<th>Item</th>\n<th>Amount</th>\n<th>Price</th>\n</tr>\n</thead>\n<tbody>\n<tr>"
+
+        function addFood(a) {
+            cartF.push(food[a]);
+            cartA[a] = cartA[a] + 1;
+            cartP.push(price[a]);
+        }
+
+        function showCart() {
+            var total = 0;
+            var tax = 0.0;
+            var befTax = 0;
+            for (var i = 0; i < 6; i++) {
+                if (cartA[i] > 0) {
+                    cartS.concat("<td>");
+                    cartS.concat(food[i]);
+                    cartS.concat("</td> <td>");
+                    cartS.concat(cartA[i].toString());
+                    cartS.concat("</td> <td>$");
+                    cartS.concat(price[i].toString());
+                    cartS.concat("</td>");
+                    befTax = befTax + price[i];
+                    tax = tax + price[i] * 0.06;
+                    total = befTax + tax;
+                }
+            }
+            cartS.concat("</tr > </tbody > <tfoot> <tr> <td style=\"border: none;\"></td> <td style=\"border: none; \"></td> <td style=\"border: none; \"> </td> </tr> <tr> <td style=\"border: none; \">Total before Tax</td> <td style=\"border: none; \"> </td> <td style=\"border: none;\">$");
+            cartS.concat(befTax.toString());
+            cartS.concat("</td> </tr> <tr> <td style=\"border: none;\">Estimated Tax</td> <td style=\"border: none; \"></td> <td style=\"border: none; \">$");
+            cartS.concat(tax.toString());
+            cartS.concat("</td > </tr > <tr> <td style=\"border: none;\">Total</td> <td style=\"border: none; \"></td> <td style=\"border: none;\">$");
+            cartS.concat(total.toString());
+            cartS.concat("</td> </tr> </tfoot> </table >");
+        }
+
+    </script>
 </head>
 
 <style>
@@ -443,44 +485,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="row innertable">
-                        <table class="col-sm-12 col-md-12 col-lg-12 col-xm-12">
-                            <thead>
-                                <tr>
-                                    <th>Item</th>
-                                    <th>Amount</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Hamburger</td>
-                                    <td>1</td>
-                                    <td>$6</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td style="border: none;"></td>
-                                    <td style="border: none;"></td>
-                                    <td style="border: none;"></td>
-                                </tr>
-                                <tr>
-                                    <td style="border: none;">Total before Tax</td>
-                                    <td style="border: none;"></td>
-                                    <td style="border: none;">$6</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: none;">Estimated Tax</td>
-                                    <td style="border: none;"></td>
-                                    <td style="border: none;">$0.6</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: none;">Total</td>
-                                    <td style="border: none;"></td>
-                                    <td style="border: none;">$6.6</td>
-                                </tr>
-                            </tfoot>
-                        </table>
+                        <script>
+                            showCart();
+                            document.write(cartS);
+                        </script>
                     </div>
 
                     <div>
