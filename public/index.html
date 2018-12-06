@@ -37,30 +37,50 @@
         }
 
         function makeOrder() {
-            var oid = rng();
-            addr = document.getElementById("txtAddr").value;
+           var oid = rng();
+           addr = document.getElementById("txtAddr").value;
 
-            var obj = {
-                "orderID": oid,
-                "Address": addr
-            };
+           var obj = {
+               "orderID": oid,
+               "Address": addr
+           };
 
-            for (var i = 0; i < 6; i++) {
-                if (cartA[i] > 0) {
-                    obj[food[i]] = cartA[i];
-                }
-            }
+           for (var i = 0; i < 6; i++) {
+               if (cartA[i] > 0) {
+                   obj[food[i]] = cartA[i];
+               }
+           }
 
-            obj["Total Before Tax"] = befTax;
-            obj["Tax"] = tax;
-            obj["Total"] = total;
-            obj["Feedback"] = "N/A";
+           obj["Total Before Tax"] = befTax;
+           obj["Tax"] = tax;
+           obj["Total"] = total;
+           obj["Feedback"] = "N/A";
 
-            var post = new XMLHttpRequest();
-            post.open("POST", "/make_order", true);
-            post.setRequestHeader("Content-type", "application/json");
-            post.send(JSON.stringify(obj));
-        }
+           var post = new XMLHttpRequest();
+           post.open("POST", "/make_order", true);
+           post.setRequestHeader("Content-type", "application/json");
+           post.send(JSON.stringify(obj));
+
+          
+           var str='<p>Order Success!</p> <p>OrderID: ';
+           str+=oid;
+           str+='</p>'
+           for(var i=0;i<6;i++){
+               if(cartA[i]>0){
+                   str+='<p>';
+                   str+=food[i]+'       Number of: '+cartA[i].toString();
+                   str+='</p>';
+               }
+           }
+           str+='<p>Total Before Tax: $'+befTax.toString()+'</p>';
+           str+='<p>Estimated Tax: $'+tax.toString()+'</p>';
+           str+='<p>Total: $'+total.toString()+'</p>';
+           str+='<p>'+addr+'</p>';
+           document.write(str);
+       }
+
+
+
 
         function addFood(a) {
             cartA[a] = cartA[a] + 1;
