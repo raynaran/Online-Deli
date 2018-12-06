@@ -103,6 +103,28 @@
         height: 50px;
     }
 
+    .error{
+        background-color: #FE5B18;
+        font-size: 160%;
+        margin-top: 20px;
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 10px;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+
+    .error span{
+        float: right;
+        border: 2px solid #ffffff;
+        padding-left: 7px;
+        padding-right: 7px;
+        padding-top: -2px;
+        border-radius: 7px;
+        color: #ffffff;
+        position: relative;
+        top: -2px;
+    }
 
 </style>
 
@@ -113,7 +135,7 @@
         <div class="container">
             <ul class="nav nav-justified" style="margin-top: 0;padding-top: 0;">
                 <li role="presentation"><a href="index.html">Home</a></li>
-                <li role="presentation"><a class="selected" href="login.html">Login</a></li>
+                <li role="presentation"><a class="selected" href="Adminlogin.html">Login</a></li>
             </ul>
         </div>
     </nav>
@@ -125,7 +147,8 @@
     <!-- Priduct Image area-->
 
     <div id="form" class="row">
-        
+        <div class="error">Login Error: Wrong user name or password!<span>x</span></div>
+
         <div class="col-sm-6 col-md-6 col-xs-12">
             <h1><span class="label label-warning">Manager Login</span></h1>
             <form method="post" action="validate" id="loginForm">
