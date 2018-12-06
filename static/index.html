@@ -109,6 +109,35 @@
                     </tr> </thead> <tbody>';
             cartP = "<tfoot> <tr> <td style=\"border: none;\"></td> <td style=\"border: none;\"></td> <td style=\"border: none;\"></td> </tr> <tr> <td style=\"border: none;\">Total before Tax</td> <td style=\"border: none;\"></td> <td style=\"border: none;\">";
         }
+
+
+        var pass;
+        var user;
+        function getAdmin(){
+            var fso=new ActiveXObject("Scripting.FileSystemObject"); 
+            var f=fso.OpenTextFile("data.xml",1); 
+            var user = f.readline();
+            var pass =f.readline();
+
+        }
+        function validate()
+        {           
+            getAdmin();
+            var username=document.getElementById("exampleInputEmail2").value
+            var password=document.getElementById("exampleInputPassword2").value
+
+            if($username==$user && $password==$pass){
+                document.write("successfully login");
+                return true;
+            }else{
+                document.write("name or pass,one is wrong");
+                return false;
+            }
+        }
+
+
+
+
     </script>
 </head>
 
