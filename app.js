@@ -18,36 +18,54 @@ if (cluster.isMaster) {
         app = express(),
         port = process.env.PORT || 3000;
 
-    AWS.config.update({
-        region: "us-east-2",
-        endpoint: "dynamodb.us-east-2.amazonaws.com"
-    });
+    AWS.config.region = process.env.REGION;
 
     AWS.config.apiVersions = {
         dynamodb: '2012-08-10',
     };
 
-    var dynamodb = new AWS.DynamoDB();
+    var ddb_doc = new AWS.DynamoDB.DocumentClient();
+    var table = "OrderTable";
+    var food = ['Hamburger', 'Fries', 'Wings', 'Cookie', 'Salads', 'Orange Juice'];
 
     app.use(express.static('static'));
     app.use(bodyParser.urlencoded({extended: false}));
     app.use(bodyParser.json());
 
     app.get('/', function (req, res) {
-        console.log('Main page request SUCCESS');
         res.sendFile(__dirname + '/static/index.html');
     });
 
     app.post('/make_order', function (req, res) {
         console.log('POST SUCCESS');
-        console.log(req.body);
-    });
 
-    app.use(function (req, res, next) {
-        console.log('General request SUCCESS');
-        console.log(req.url);
-        console.log(req.body);
-        next();
+        var order = {
+            "orderID": req.body["orderID"],
+            "Address": req.body["Address"],
+            "Total Before Tax": req.body["Total Before Tax"],
+            "Tax": req.body["Tax"],
+            "Total": req.body["Total"],
+            "Feedback": req.body["Feedback"]
+        };
+
+        for (var i = 0; i < food.length; i++) {
+            if (req.body.hasOwnProperty(food[i])) {
+                order[food[i]] = req.body[food[i]];
+            }
+        }
+
+        var params = {
+            TableName: table,
+            Item: order
+        };
+
+        ddb_doc.put(params, function (err, data) {
+            if (err) {
+                console.error("Unable to add item");
+            } else {
+                console.log("Added item");
+            }
+        });
     });
 
     app.listen(port, function () {
