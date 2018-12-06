@@ -62,14 +62,14 @@
 		    <img id="logo" class="col-xs-12 col-md-12" src="img/feedback.jpg" alt="">
 		</div>
 		
-		<form action="">
+		<form method="post" action="feedback">
 			<div class="form-group">
 			    <label for="OrderNumber">Order #</label>
-			    <input type="text" class="form-control" id="orderNumber" placeholder="Order Number">
+			    <input type="text" name="orderNumber" class="form-control" id="orderNumber" placeholder="Order Number">
 			</div>
 			<div class="form-group">
 			    <label for="Feedback">Feedback</label>
-			    <textarea class="form-control" rows="3"></textarea>
+			    <textarea name="feedbackText" class="form-control" rows="3"></textarea>
 			</div>
 			<button type="submit" class="btn btn-primary btn-lg">Submit</button>
 			<a type="submit" href="index.html" class="btn btn-success btn-lg">Go back to Homepage</a>
