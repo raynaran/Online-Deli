@@ -113,6 +113,11 @@ app.post('/validate', function (req, res) {
     }
 });
 
+app.post('/feedback', function (req, res) {
+    console.log('POST SUCCESS');
+    console.log(req.body);
+});
+
 app.use(function (req, res, next) {
     console.log('General request SUCCESS');
     console.log(req.url);
