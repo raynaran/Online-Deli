@@ -15,42 +15,91 @@
         var price = [6, 3, 6, 6, 6, 3];
         var cartA = [0, 0, 0, 0, 0, 0];
         var cartS = '<table class="col-sm-12 col-md-12 col-lg-12 col-xm-12">\
-            <thead>\
-            <tr>\
-            <th>Item</th>\
-            <th>Amount</th>\
-            <th>Price</th>\
-            </tr> </thead> <tbody>';
+                <thead>\
+                <tr>\
+                <th>Item</th>\
+                <th>Amount</th>\
+                <th>Price</th>\
+                </tr> </thead> <tbody>';
         var cartP = "<tfoot> <tr> <td style=\"border: none;\"></td> <td style=\"border: none;\"></td> <td style=\"border: none;\"></td> </tr> <tr> <td style=\"border: none;\">Total before Tax</td> <td style=\"border: none;\"></td> <td style=\"border: none;\">";
-        var cartPmH;
-        function addFood(a) {
-            cartA[a] = cartA[a] + 1;
-            //var win=window.open("payment.html");
+        var total = 0;
+        var tax = 0.0;
+        var befTax = 0;
+        var addr = "nowhere";
+
+        function rng() {
+            var rst = "";
+            var pl = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < 10; i++) {
+                rst += pl.charAt(Math.floor(Math.random() * pl.length));
+            }
+            return rst;
         }
-        
-        function showCart() {
-            var total = 0;
-            var tax = 0.0;
-            var befTax = 0;
+
+        function makeOrder() {
+            var oid = rng();
+            var fb = "N/A";
+            var met = "post";
+            var fm = document.createElement("form");
+            var tmp = document.createElement("input");
+            
+            addr = document.getElementById("txtAddr").value;
+            tmp.setAttribute("name", "orderID");
+            tmp.setAttribute("value", oid);
             for (var i = 0; i < 6; i++) {
                 if (cartA[i] > 0) {
-                    cartS+='<tr> <td>';
-                    cartS+=food[i];
-                    cartS+='</td> <td>';
-                    cartS+=cartA[i].toString();
-                    cartS+='</td> <td>';
-                    cartS+='$'+price[i].toString();
-                    cartS+='</td> </tr>';
+                    var fd = document.createElement("input");
+                    fd.setAttribute("name", food[i]);
+                    fd.setAttribute("value", cartA[i]);
+                    fm.appendChild(fd);
+                }                
+            }
+            tmp = document.createElement("input");
+            tmp.setAttribute("name", "Total Before Tax");
+            tmp.setAttribute("value", befTax);
+            fm.appendChild(tmp);
+            tmp = document.createElement("input");
+            tmp.setAttribute("name", "Tax");
+            tmp.setAttribute("value", tax);
+            fm.appendChild(tmp);
+            tmp = document.createElement("input");
+            tmp.setAttribute("name", "Total");
+            tmp.setAttribute("value", total);
+            fm.appendChild(tmp);
+            tmp = document.createElement("input");
+            tmp.setAttribute("name", "Feedback");
+            tmp.setAttribute("value", fb);
+            fm.submit();
+        }
+
+        function addFood(a) {
+            cartA[a] = cartA[a] + 1;
+        }
+
+        function showCart() {
+            total = 0;
+            tax = 0.0;
+            befTax = 0;
+            for (var i = 0; i < 6; i++) {
+                if (cartA[i] > 0) {
+                    cartS += '<tr> <td>';
+                    cartS += food[i];
+                    cartS += '</td> <td>';
+                    cartS += cartA[i].toString();
+                    cartS += '</td> <td>';
+                    cartS += '$' + price[i].toString();
+                    cartS += '</td> </tr>';
                     befTax = befTax + price[i] * cartA[i];
                     tax = tax + price[i] * 0.06 * cartA[i];
                     total = befTax + tax;
                 }
             }
-            cartS+='</tbody>';
-            cartP+='$'+befTax.toString()+'</td> </tr>';
-            cartP+='<tr> <td style="border: none;">Estimated Tax</td> <td style="border: none;"></td> <td style="border: none;">'+'$'+tax.toString()+'</td> </tr>';
-            cartP+='<tr> <td style="border: none;">Total</td> <td style="border: none;"></td> <td style="border: none;">'+'$'+total.toString()+'</td> </tr>';
-            document.getElementById("cartTable").innerHTML=cartS+cartP;
+            tax = parseFloat(Math.round(tax * 100) / 100).toFixed(2);
+            cartS += '</tbody>';
+            cartP += '$' + befTax.toString() + '</td> </tr>';
+            cartP += '<tr> <td style="border: none;">Estimated Tax</td> <td style="border: none;"></td> <td style="border: none;">' + '$' + tax.toString() + '</td> </tr>';
+            cartP += '<tr> <td style="border: none;">Total</td> <td style="border: none;"></td> <td style="border: none;">' + '$' + total.toString() + '</td> </tr>';
+            document.getElementById("cartTable").innerHTML = cartS + cartP;
             cartS = '<table class="col-sm-12 col-md-12 col-lg-12 col-xm-12">\
                     <thead>\
                     <tr>\
@@ -59,10 +108,8 @@
                     <th>Price</th>\
                     </tr> </thead> <tbody>';
             cartP = "<tfoot> <tr> <td style=\"border: none;\"></td> <td style=\"border: none;\"></td> <td style=\"border: none;\"></td> </tr> <tr> <td style=\"border: none;\">Total before Tax</td> <td style=\"border: none;\"></td> <td style=\"border: none;\">";
-
         }
-
-</script>
+    </script>
 </head>
 
 <style>
@@ -81,7 +128,7 @@
         border: none;
     }
 
-    div#top ul li a {
+        div#top ul li a {
             -webkit-touch-callout: none; /* iOS Safari */
             -webkit-user-select: none; /* Safari */
             -khtml-user-select: none; /* Konqueror HTML */
@@ -94,12 +141,12 @@
             color: #000000;
         }
 
-    div#top ul li a.selected {
+            div#top ul li a.selected {
                 font-weight: bolder;
                 color: #000000;
             }
 
-    div#top ul li a:hover {
+            div#top ul li a:hover {
                 background-color: #d3d3d3;
                 border-radius: 10px;
                 font-weight: bolder;
@@ -117,7 +164,7 @@
         margin-bottom: 25px;
     }
 
-    div.thumbnail img {
+        div.thumbnail img {
             border-radius: 10px;
         }
 
@@ -227,7 +274,6 @@
     #payment {
         cursor: pointer;
     }
-
 </style>
 
 <body style="padding-top: 0;">
@@ -550,18 +596,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="row innertable">
-                            <table id="cartTable" class="col-sm-12 col-md-12 col-lg-12 col-xm-12">
-
-                            </table>
+                            <table id="cartTable" class="col-sm-12 col-md-12 col-lg-12 col-xm-12"></table>
                         </div>
 
                         <div>
-                            <script>
-                                function changePage(){
-                                    document.getElementById("page1").setAttribute("style", "display:none");
-                                    document.getElementById("page2").setAttribute("style", "display:block");
-                                }
-                            </script>
+                            <textarea id="txtAddr" rows="4" , cols="75">Enter your address here.&#13;&#10;Street_line1&#13;&#10;Street_line2&#13;&#10;City Zip State</textarea>
                             <a onclick="makeOrder()" class="btn btn-success btn-lg" style="margin-top: 10px; width: 49%;">Make order</a>
                             <a href="index.html" class="btn btn-danger btn-lg" style="margin-top: 10px; width: 49%;">Clear my cart</a>
                         </div>
@@ -572,4 +611,3 @@
     </div>
 </body>
 </html>
-
