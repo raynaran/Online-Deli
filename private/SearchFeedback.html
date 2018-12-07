@@ -11,6 +11,70 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    	var food = ['Hamburger', 'Fries', 'Wings', 'Cookie', 'Salads', 'Orange Juice'];
+    	var ordernumber = '';
+    	var feedback = '';
+        var cartA = [0, 0, 0, 0, 0, 0];
+
+        var cartS = '<table class="table">\
+                <thead>\
+                <tr>\
+                <th>Order #</th>\
+			  	<th>Feedback</th>\
+			  	<th>Hamburger</th>\
+			  	<th>Fries</th>\
+			  	<th>Wings</th>\
+			  	<th>Cookie</th>\
+			  	<th>Salads</th>\
+			  	<th>Orange Juice</th>\
+                </tr> </thead> <tbody>';
+
+        function getdata(){
+        	var rownumber = 2; // number of row we have in the database
+        	for(var i = 0; i < rownumber;i++){
+        		ordernumber = "dsadsadas"; // get from the db for the ordernumber
+        		feedback = "dsadasd"; // get from the db for the feedback
+        		cartA[0] = 11; // get from the db for the number of the hambuger
+        		cartA[1] = 12; // get from the db for the number of fries
+        		cartA[2] = 13; // get from the db for the number of wings
+        		cartA[3] = 14; // get from the db for the number of cookie
+        		cartA[4] = 12; // get from the db for the number of salads
+        		cartA[5] = 13; // get from the db for the number of orange juice
+        		cartS += '<tr><td>';
+        		cartS += ordernumber;
+        		cartS += '</td><td>';
+        		cartS += feedback;
+        		cartS += '</td> <td>';
+        		cartS += cartA[0];
+        		cartS += '</td> <td>';
+        		cartS += cartA[1];
+        		cartS += '</td> <td>';
+        		cartS += cartA[2];
+        		cartS += '</td> <td>';
+        		cartS += cartA[3];
+        		cartS += '</td> <td>';
+        		cartS += cartA[4];
+        		cartS += '</td> <td>';
+        		cartS += cartA[5];
+        		cartS += '</td></tr>';
+        	}
+        	cartS += '</tbody>';
+        	document.getElementById("feedbacktable").innerHTML += cartS;
+        	cartS = '<table class="table">\
+                <thead>\
+                <tr>\
+                <th>Order #</th>\
+			  	<th>Feedback</th>\
+			  	<th>Hamburger</th>\
+			  	<th>Fries</th>\
+			  	<th>Wings</th>\
+			  	<th>Cookie</th>\
+			  	<th>Salads</th>\
+			  	<th>Orange Juice</th>\
+                </tr> </thead> <tbody>';
+        }
+    </script>
 </head>
 
 <style>
@@ -60,7 +124,7 @@
 
 </style>
 
-<body style="padding-top: 0;">
+<body style="padding-top: 0;" onload="getdata()">
 	
 	<div id="top" class="container" style="margin-top: 0;padding-top: 0;">
 
@@ -70,36 +134,11 @@
 		
 		<!-- Priduct Image area-->
 		<div class="table-responsive">
-		  	<table class="table">
-		  		<thead>
-		  			<tr>
-			  			<th>Order #</th>
-			  			<th>Suggestion</th>
-			  		</tr>
-		  		</thead>
-		  		<tbody>
-					<tr>
-					  	<td>00000001</td>
-					  	<td>The food is too cold!</td>
-					</tr>
-					<tr>
-					  	<td>00000002</td>
-					  	<td>Take too long time!</td>
-					</tr>
-					<tr>
-					  	<td>00000003</td>
-					  	<td>Take too long time!</td>
-					</tr>
-					<tr>
-					  	<td>00000004</td>
-					  	<td>Not tasty</td>
-					</tr>
-		  		</tbody>
-		  	</table>
+		  	<table class="table" id="feedbacktable"></table>
 		</div>
 			<div class="row" id="buttons">
 			<div class="col-md-6 col-sm-6 col-xs-12 btn ">
-				<a type="print" class="btn-success btn-lg btn-block" >Print</a>
+				<a type="print" class="btn-success btn-lg btn-block">Print</a>
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-12 btn ">
 				<a type="print" href="admin.html" class="btn-warning btn-lg btn-block" >Back</a>
