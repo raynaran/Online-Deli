@@ -70,7 +70,7 @@ var sendSearchFeedback = function (res) {
 };
 
 app.use(function (req, res, next) {
-        if (req.url === '/admin.html' || req.url === '/SearchInventory.html') {
+        if (req.url === '/admin.html') {
             console.log("private request: " + req.url);
 
             if (req.session && req.session.authenticated) {
