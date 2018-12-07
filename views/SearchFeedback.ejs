@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Feedback</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    div#footer {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    nav {
+        background-color: #ffffff;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+
+    div#top ul li a {
+        font-size: 160%;
+        transition: background-color 0.3s, border-radius 0.3s, font-weight 0.3s;
+        color: #000000;
+    }
+
+    div#top ul li a.selected {
+        font-weight: bolder;
+        color: #000000;
+    }
+
+    div#top ul li a:hover {
+        background-color: #d3d3d3;
+        border-radius: 10px;
+        font-weight: bolder;
+        color: #000000;
+        transition: background-color 0.3s, border-radius 0.3s, font-weight 0.3s;
+    }
+
+    img#logo {
+        margin-top: 50px;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    form div label {
+        font-size: 160%;
+    }
+
+    div#buttons div a {
+        height: 55px;
+        padding: 13px;
+        text-decoration: none;
+        font-size: 150%;
+    }
+
+</style>
+
+<body style="padding-top: 0;">
+
+<div id="top" class="container" style="margin-top: 0;padding-top: 0;">
+
+    <div class="row">
+        <img id="logo" class="col-xs-12 col-md-12" src="img/feedback.jpg" alt="">
+    </div>
+
+    <!-- Priduct Image area-->
+    <div class="table-responsive">
+        <table class="table" id="feedbacktable">
+            <thead>
+            <tr>
+                <th>Order #</th>
+                <th>Feedback</th>
+                <th>Hamburger</th>
+                <th>Fries</th>
+                <th>Wings</th>
+                <th>Cookie</th>
+                <th>Salads</th>
+                <th>Orange Juice</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (var i = 0; i < orders.length; i++) { %>
+                <tr>
+                    <th><%= orders[i]["orderID"] %> </th>
+                    <th><%= orders[i]["Feedback"] %> </th>
+                    <th><%= orders[i]["Hamburger"] %> </th>
+                    <th><%= orders[i]["Fries"] %> </th>
+                    <th><%= orders[i]["Wings"] %> </th>
+                    <th><%= orders[i]["Cookie"] %> </th>
+                    <th><%= orders[i]["Salads"] %> </th>
+                    <th><%= orders[i]["Orange Juice"] %> </th>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" id="buttons">
+        <div class="col-md-6 col-sm-6 col-xs-12 btn ">
+            <a type="print" class="btn-success btn-lg btn-block">Print</a>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 btn ">
+            <a type="print" href="admin.html" class="btn-warning btn-lg btn-block">Back</a>
+        </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
