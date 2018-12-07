@@ -1,18 +1,3 @@
-/* var cluster = require('cluster');
-
-if (cluster.isMaster) {
-    var cpuCount = require('os').cpus().length;
-
-    for (var i = 0; i < cpuCount; i += 1) {
-        cluster.fork();
-    }
-
-    cluster.on('exit', function (worker) {
-        console.log('Worker ' + worker.id + ' died :(');
-        cluster.fork();
-    });
-} else {} */
-
 var AWS = require('aws-sdk'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
@@ -42,20 +27,23 @@ app.use(session({
 }));
 
 app.use(function (req, res, next) {
-        console.log('Authorizing ' + req.url);
-
         if (req.url === '/admin.html' || req.url === '/SearchFeedback.html'
             || req.url === 'SearchInventory.html') {
+            console.log("private request: " + req.url);
+
             if (req.session && req.session.authenticated) {
                 res.sendFile(__dirname + '/private' + req.url);
             } else {
                 res.sendStatus(404);
             }
 
-            return;
+        } else {
+
+            console.log("public request: " + req.url);
+            next();
         }
 
-        next();
+        console.log(req.body);
     }
 );
 
@@ -109,20 +97,32 @@ app.post('/validate', function (req, res) {
         req.session.authenticated = true;
         res.redirect('/admin.html');
     } else {
-        res.sendStatus(403);
+        res.redirect('/loginfail.html');
     }
 });
 
 app.post('/feedback', function (req, res) {
     console.log('POST SUCCESS');
     console.log(req.body);
-});
 
-app.use(function (req, res, next) {
-    console.log('General request SUCCESS');
-    console.log(req.url);
-    console.log(req.body);
-    next();
+    var params = {
+        TableName: table,
+        Key: {
+            "orderID": req.body["orderNumber"]
+        },
+        UpdateExpression: 'set #a = :x',
+        ExpressionAttributeNames: {'#a': 'Feedback'},
+        ExpressionAttributeValues: {':x': req.body["feedbackText"]},
+        ReturnValues: "UPDATED_NEW"
+    };
+
+    ddb_doc.update(params, function (err, data) {
+        if (err) {
+            console.error("Unable to update item");
+        } else {
+            console.log("UpdateItem succeeded");
+        }
+    });
 });
 
 app.listen(port, function () {
